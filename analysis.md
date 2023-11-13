@@ -3,13 +3,6 @@ Author
     birth_date
     biography
 
-
-Book   
-    title 
-    author
-    publication_date
-    price
-
 Review
     book 
     reviewer name 
