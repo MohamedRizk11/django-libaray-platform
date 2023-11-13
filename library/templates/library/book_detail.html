@@ -37,7 +37,7 @@
                 <!-- Start Product Detail Column -->
                 <div class="col-12 col-md-5">
                     <div class="product-detail">
-                        <img src="{% static 'images/Book.jpg' %}" class="img-fluid">
+                        <img src="{{book.logo}}" class="img-fluid">
                         <h3 class="product-title">{{book.title}}</h3>
                         <p style="font-size: 20px;">Author:<a href="">{{book.author}}</a></p>
                         <h6 class="product-price">Price: {{book.price}}</h6>

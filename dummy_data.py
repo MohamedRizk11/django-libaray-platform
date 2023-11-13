@@ -1,44 +1,50 @@
-import os,django
-
+import os
+import django
+import sys
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
+sys.path.append("D:\\libraryplatform\\src")
+django.setup()
 import random
 from django.conf import settings
-
-from library.models import Book,Author,Review
 from faker import Faker
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
-django.setup()
+from library.models import Book, Author, Review
+
+
 
 def create_books(n):
     fake = Faker()
-    for x in range(n):
+    images=['1.jpg','2.jpg','3.jpg','4.jpeg','5.jpeg','6.jpeg','7.jpeg','8.jpeg','9.jpeg','10.png']
+    for _ in range(n):
+        author = Author.objects.order_by('?').first()
         Book.objects.create(
             title=fake.sentence(),
-            author=Author.objects.all().order_by('?')[0],
-            publication_date = fake.date_time_between(start_date='-1y', end_date='now'),
-            price=random.randint(1010,2600)
+            author=author,
+            publication_date=fake.date_time_between(start_date='-1y', end_date='now'),
+            price=random.randint(1010, 2600),
+            logo=images[random.randint(0,9)],
         )
 
-
-
-def create_Author(n):
-    fake=Faker()
-    for x in range(n):
+def create_authors(n):
+    fake = Faker()
+    for _ in range(n):
         Author.objects.create(
             name=fake.name(),
             birth_date=fake.date_of_birth(),
             biography=fake.paragraph(),
-    )
+        )
 
-
-def create_Review(n):
+def create_reviews(n):
     fake = Faker()
-    for x in range(n):
+    for _ in range(n):
+        book = Book.objects.order_by('?').first()
         Review.objects.create(
-            book=Book.objects.all().order_by('?')[0],
+            book=book,
             reviewer_name=fake.name(),
             content=fake.paragraph(),
             rating=fake.random_int(min=0, max=5),
         )
 
-
-create_books(5)
+# Usage examples:
+#create_authors(150)
+create_books(10)
+#create_reviews(2000)
