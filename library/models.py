@@ -2,6 +2,7 @@ from datetime import date
 from django.utils import timezone
 from tkinter import CASCADE
 from django.db import models
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -20,9 +21,12 @@ class Book(models.Model):
     author=models.ForeignKey('Author',on_delete=models.CASCADE,related_name='book_author')
     publication_date=models.DateTimeField(default=timezone.now)
     price=models.IntegerField(null=True,blank=True)
-
+    slug=models.SlugField(null=True,blank=True)
     def __str__(self):
         return self.title
+    def save(self, *args, **kwargs):
+       self.slug=slugify(self.title)
+       super(Book, self).save(*args, **kwargs) 
 
 class Review(models.Model):
     book=models.ForeignKey(Book,on_delete=models.CASCADE,related_name='review_book')
