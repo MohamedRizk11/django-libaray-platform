@@ -35,16 +35,18 @@
 						<!-- Start Column 1 -->
 						<div class="col-12 col-md-4 col-lg-3 mb-5">
 							<a class="product-item" href="/books/{{object.slug}}">
-								<img src="{% static 'images/Book.jpg' %}" class="img-fluid product-thumbnail">
-
+								<img src="{{object.logo.url}}" class="img-fluid product-thumbnail" style="width: 300px; height: 200px;" alt="">
 								<h3 class="product-title">{{object}}</h3>
-								<strong class="product-price">{{object.price}}</strong>
-
+								<strong class="product-price">price:{{object.price}}LE</strong>
 								<span class="icon-cross">
-									<img src="{% static 'images/cross.svg' %}" class="img-fluid">
+									<img src="{% static 'images/plus.svg' %}" class="img-fluid">
+										
+									
 								</span>
 							</a>
-						</div> 
+						</div>
+						
+						
 						<!-- End Column 1 -->
 					{% endfor %}
 

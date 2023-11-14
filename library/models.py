@@ -23,7 +23,7 @@ class Book(models.Model):
     author=models.ForeignKey('Author',on_delete=models.CASCADE,related_name='book_author')
     publication_date=models.DateTimeField(default=timezone.now)
     price=models.IntegerField(null=True,blank=True)
-    logo=models.ImageField(null=TRUE,blank=True)
+    logo=models.ImageField(upload_to='books')
     slug=models.SlugField(null=True,blank=True)
     def __str__(self):
         return self.title

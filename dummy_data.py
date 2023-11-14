@@ -21,7 +21,7 @@ def create_books(n):
             author=author,
             publication_date=fake.date_time_between(start_date='-1y', end_date='now'),
             price=random.randint(1010, 2600),
-            logo=images[random.randint(0,9)],
+            logo=f"books/{images[random.randint(0,9)]}"
         )
 
 def create_authors(n):
@@ -45,6 +45,6 @@ def create_reviews(n):
         )
 
 # Usage examples:
-#create_authors(150)
-create_books(10)
-#create_reviews(2000)
+create_authors(150)
+create_books(400)
+create_reviews(500)
