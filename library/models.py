@@ -13,10 +13,12 @@ class Author(models.Model):
     name=models.CharField(max_length=50)
     birth_date=models.DateField()
     biography=models.TextField(max_length=1000)
-    
+    slug=models.SlugField(null=True,blank=True)
     def __str__(self):
         return self.name
-
+    def save(self, *args, **kwargs):
+        self.slug=slugify(self.name)
+        super(Author, self).save(*args, **kwargs) 
 
 class Book(models.Model):
     title =models.CharField(max_length=100)
